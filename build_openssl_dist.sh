@@ -29,7 +29,7 @@ function build_osx_for ()
   export CROSS_TOP="${!CROSS_TOP_ENV}"
   export CROSS_SDK="${!CROSS_SDK_ENV}"
 
-  ./Configure $PLATFORM "-arch $ARCH -isysroot \$(CROSS_TOP)/SDKs/\$(CROSS_SDK)" no-shared no-async --prefix=${TMP_DIR}/${ARCH} || exit 1
+  ./Configure $PLATFORM "-arch $ARCH -isysroot \$(CROSS_TOP)/SDKs/\$(CROSS_SDK)" enable-tls1_3 no-shared no-async no-tests --prefix=${TMP_DIR}/${ARCH} || exit 1
   # problem of concurrent build; make -j8
   make -j8 && make install_sw || exit 2
   unset CROSS_TOP
@@ -56,7 +56,7 @@ function build_ios_for ()
 
   export CROSS_TOP="${!CROSS_TOP_ENV}"
   export CROSS_SDK="${!CROSS_SDK_ENV}"
-  ./Configure $PLATFORM "-arch $ARCH" no-shared no-async no-tests --prefix=${TMP_DIR}/${ARCH} || exit 1
+  ./Configure $PLATFORM "-arch $ARCH" enable-tls1_3 no-shared no-async no-tests --prefix=${TMP_DIR}/${ARCH} || exit 1
   # problem of concurrent build; make -j8
   make -j8 && make install_sw || exit 2
   unset CROSS_TOP

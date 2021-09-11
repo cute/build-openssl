@@ -6,8 +6,8 @@ diff --git a/Configurations/10-main.conf b/Configurations/10-main.conf
          lflags           => add("-r"),
      },
 +    "ios64sim-cross" => {
-+        inherit_from     => [ "darwin-common", asm("no_asm") ],
-+        cflags           => add("-arch x86_64 -DOPENSSL_NO_ASM -mios-version-min=7.0.0 -isysroot \$(CROSS_TOP)/SDKs/\$(CROSS_SDK) -fno-common"),
++        inherit_from     => [ "darwin-common" ],
++        cflags           => add("-arch x86_64 -mios-version-min=7.0.0 -isysroot \$(CROSS_TOP)/SDKs/\$(CROSS_SDK) -fno-common"),
 +        sys_id           => "iOS",
 +        bn_ops           => "SIXTY_FOUR_BIT_LONG RC4_CHAR",
 +        perlasm_scheme   => "ios64",
