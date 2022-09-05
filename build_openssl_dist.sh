@@ -99,3 +99,7 @@ DIST_DIR=$DFT_DIST_DIR/${BUILD_PLATFORM}
 mkdir -p ${DIST_DIR}
 cp -r ${TMP_DIR}/include ${TMP_DIR}/lib ${DIST_DIR}
 
+cp include/crypto/poly1305.h ${DIST_DIR}/include/openssl/
+cp include/crypto/chacha.h ${DIST_DIR}/include/openssl/
+cp crypto/blake2/blake2_local.h ${DIST_DIR}/include/openssl/blake2_local.h
+cp crypto/poly1305/poly1305_local.h ${DIST_DIR}/include/openssl/poly1305_local.h

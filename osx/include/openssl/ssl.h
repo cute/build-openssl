@@ -2503,6 +2503,28 @@ void SSL_set_quic_early_data_enabled(SSL *ssl, int enabled);
 
 #  endif
 
+// SSL_CTX_set_grease_enabled configures whether sockets on |ctx| should enable
+// GREASE. See draft-davidben-tls-grease-01.
+void SSL_CTX_set_grease_enabled(SSL_CTX *ctx, int enabled);
+
+# ifndef OPENSSL_NO_CERT_COMPRESSION
+typedef int (*SSL_cert_compress_cb_fn)(SSL *s,
+                    const unsigned char *in, size_t inlen,
+                    unsigned char *out, size_t *outlen);
+typedef int (*SSL_cert_decompress_cb_fn)(SSL *s,
+                    const unsigned char *in, size_t inlen,
+                    unsigned char *out, size_t outlen);
+
+int SSL_get_cert_compression_compress_id(SSL *s);
+int SSL_get_cert_compression_decompress_id(SSL *s);
+int SSL_add_cert_compression_alg(SSL *s, int alg_id,
+                                 SSL_cert_compress_cb_fn compress,
+                                 SSL_cert_decompress_cb_fn decompress);
+int SSL_CTX_add_cert_compression_alg(SSL_CTX *ctx, int alg_id,
+                                     SSL_cert_compress_cb_fn compress,
+                                     SSL_cert_decompress_cb_fn decompress);
+# endif
+
 # ifdef  __cplusplus
 }
 # endif
